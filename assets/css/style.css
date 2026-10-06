@@ -236,3 +236,5 @@ table.results.compact td:first-child { white-space: normal; }
 table.results tbody tr.hl td { background: var(--brand-light); }
 @media (max-width: 1000px) { .steps.four { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 860px)  { .steps.four { grid-template-columns: 1fr; } }
+.video-row-title { margin: 34px 0 4px; font-size: 1.12rem; }
+.video-row-text { margin: 0 0 6px; color: var(--muted); }
