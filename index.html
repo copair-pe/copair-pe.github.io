@@ -343,50 +343,66 @@
       4&times;5&times;2&nbsp;m arena. The wire sphere around the evader marks the 0.10&nbsp;m capture radius;
       trails show recent motion. Clips play at real time.</p>
 
-    <h3 class="video-row-title">Teacher and Stage&nbsp;II student against the scripted APF evader</h3>
-    <div class="media-row cols-2">
-      <figure>
-        <video class="clip" src="assets/video/teacher.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">BR-FRPN teacher (privileged, scripted)</figcaption>
-      </figure>
-      <figure>
-        <video class="clip" src="assets/video/stage2.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">CoPAIR after Stage&nbsp;II (decentralized learned team)</figcaption>
-      </figure>
-    </div>
-
-    <h3 class="video-row-title">Stage&nbsp;II team (P0) against the APF evader</h3>
-    <p class="video-row-text">The decentralized team trained through Stage&nbsp;II, same arena and evader as the main results. Episodes play back to back.</p>
-    <div class="media-row cols-3">
-      <figure>
-        <video class="clip" src="assets/video/gen00_vs_script_overview.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">Overview</figcaption>
-      </figure>
-      <figure>
-        <video class="clip" src="assets/video/gen00_vs_script_top_down.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">Top down</figcaption>
-      </figure>
-      <figure>
-        <video class="clip" src="assets/video/gen00_vs_script_follow_P1.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">Follow camera, pursuer 1</figcaption>
-      </figure>
-    </div>
-
-    <h3 class="video-row-title">After eight generations of population training, against a learned evader</h3>
-    <p class="video-row-text">Pursuer and evader policies are trained in alternation. Here the pursuer team from generation&nbsp;8 faces the evader trained in the same generation.</p>
-    <div class="media-row cols-3">
-      <figure>
-        <video class="clip" src="assets/video/gen08_vs_evader_overview.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">Overview</figcaption>
-      </figure>
-      <figure>
-        <video class="clip" src="assets/video/gen08_vs_evader_top_down.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">Top down</figcaption>
-      </figure>
-      <figure>
-        <video class="clip" src="assets/video/gen08_vs_evader_follow_P1.mp4" muted loop playsinline preload="metadata" data-lazy></video>
-        <figcaption class="clip-cap">Follow camera, pursuer 1</figcaption>
-      </figure>
+    <div class="vcarousel" aria-roledescription="carousel">
+      <div class="vc-tabs" role="tablist">
+      <button class="vc-tab active" type="button" role="tab" data-i="0">Teacher vs. Stage II</button>
+      <button class="vc-tab" type="button" role="tab" data-i="1">P0 vs. APF evader</button>
+      <button class="vc-tab" type="button" role="tab" data-i="2">Generation 8 vs. learned evader</button>
+      </div>
+      <div class="vc-stage">
+        <button class="vc-arrow prev" type="button" aria-label="Previous video">&#8249;</button>
+      <div class="vc-slide active" role="tabpanel">
+        <h3 class="video-row-title">Teacher and Stage&nbsp;II student against the scripted APF evader</h3>
+        <p class="video-row-text">Left: the privileged BR-FRPN teacher. Right: the decentralized CoPAIR team after Stage&nbsp;II.</p>
+        <div class="media-row cols-2">
+          <figure class="">
+            <video class="clip" data-src="assets/video/teacher.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">BR-FRPN teacher (privileged, scripted)</figcaption>
+          </figure>
+          <figure class="">
+            <video class="clip" data-src="assets/video/stage2.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">CoPAIR after Stage&nbsp;II (decentralized learned team)</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="vc-slide" role="tabpanel">
+        <h3 class="video-row-title">Stage&nbsp;II team (P0) against the APF evader</h3>
+        <p class="video-row-text">The decentralized team trained through Stage&nbsp;II, same arena and evader as the main results. Episodes play back to back.</p>
+        <div class="vc-views">
+          <figure class="vc-main">
+            <video class="clip" data-src="assets/video/gen00_vs_script_overview.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">Overview</figcaption>
+          </figure>
+          <figure class="">
+            <video class="clip" data-src="assets/video/gen00_vs_script_follow_P1.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">Follow camera, pursuer 1</figcaption>
+          </figure>
+          <figure class="">
+            <video class="clip" data-src="assets/video/gen00_vs_script_follow_E.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">Follow camera, evader</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="vc-slide" role="tabpanel">
+        <h3 class="video-row-title">After eight generations of population training, against a learned evader</h3>
+        <p class="video-row-text">Pursuer and evader policies are trained in alternation. Here the pursuer team from generation&nbsp;8 faces the evader trained in the same generation.</p>
+        <div class="vc-views">
+          <figure class="vc-main">
+            <video class="clip" data-src="assets/video/gen08_vs_evader_overview.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">Overview</figcaption>
+          </figure>
+          <figure class="">
+            <video class="clip" data-src="assets/video/gen08_vs_evader_follow_P1.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">Follow camera, pursuer 1</figcaption>
+          </figure>
+          <figure class="">
+            <video class="clip" data-src="assets/video/gen08_vs_evader_follow_E.mp4" muted loop playsinline preload="none"></video>
+            <figcaption class="clip-cap">Follow camera, evader</figcaption>
+          </figure>
+        </div>
+      </div>
+        <button class="vc-arrow next" type="button" aria-label="Next video">&#8250;</button>
+      </div>
     </div>
   </div>
 </section>
