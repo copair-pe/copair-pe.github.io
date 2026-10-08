@@ -38,6 +38,11 @@ h2.section-title { font-size: 2rem; font-weight: 600; text-align: center; margin
 /* ---------- Abstract ---------- */
 .abstract p { text-align: justify; margin: 0 0 14px; }
 
+/* ---------- Footer ---------- */
+footer { background: #fafafa; padding: 40px 0 48px; margin-top: 24px; text-align: center; }
+footer p { color: var(--muted); font-size: .92rem; margin: 0; }
+footer a { color: var(--brand); }
+
 /* ---------- Figures ---------- */
 figcaption { color: var(--muted); font-size: .92rem; margin-top: 12px; text-align: justify; }
 figcaption b { color: var(--ink); }
