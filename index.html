@@ -15,334 +15,20 @@
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-<!-- ============================ NAV ============================ -->
-<nav class="topnav">
+<header class="hero">
   <div class="wrap">
-    <a class="brand" href="#top">CoPAIR<span></span></a>
-    <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
-    <div class="navlinks">
-      <a class="navlink" href="#overview">Overview</a>
-      <a class="navlink" href="#method">Method</a>
-      <a class="navlink" href="#setup">Setup</a>
-      <a class="navlink" href="#results">Results</a>
-      <a class="navlink" href="#opponents">Opponent Shift</a>
-      <a class="navlink" href="#videos">Videos</a>
-      <a class="navlink" href="#bibtex">BibTeX</a>
-    </div>
-  </div>
-</nav>
-
-<!-- ============================ HERO ============================ -->
-<header id="top" class="hero">
-  <div class="wrap">
-    <span class="badge">AAMAS 2027 &middot; Submission</span>
-    <h1><span class="tt">CoPAIR</span>: Teacher&#8209;Guided Multi&#8209;Agent Reinforcement Learning for Cooperative Quadrotor Pursuit</h1>
-
-    <p class="authors">Anonymous Author(s)</p>
-    <p class="affil">Under double-blind review</p>
-
-    <div class="btn-row">
-      <a class="btn primary" href="#" data-placeholder="paper" aria-label="Paper (available after review)">
-        <svg class="ic" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm8 1.5V8h4.5L14 3.5zM8 13h8v1.5H8V13zm0 3h8v1.5H8V16zm0-6h5v1.5H8V10z"/></svg>
-        Paper
-      </a>
-      <a class="btn ghost" href="#" data-placeholder="code" aria-label="Code (available after review)">
-        <svg class="ic" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-        Code
-      </a>
-      <a class="btn ghost" href="#results">
-        <svg class="ic" viewBox="0 0 24 24"><path d="M4 20h16v-2H4v2zm2-4h3V9H6v7zm5 0h3V4h-3v12zm5 0h3v-5h-3v5z"/></svg>
-        Results
-      </a>
-    </div>
-    <p class="btn-hint">Paper and code links will be added after the review period.</p>
-
-    <figure class="hero-figure narrow">
-      <img src="assets/img/teaser.png" alt="Two quadrotor pursuers (attacker and blocker) capture an evader inside a 4 x 5 x 2 m arena; inset shows the 0.10 m capture radius." />
-      <figcaption><b>CoPAIR pursuit against the APF evader (capture at 2.50&nbsp;s).</b> Pursuer&nbsp;1
-        (attacker, blue) and pursuer&nbsp;2 (blocker, orange) close on the evader (green). Start and
-        capture poses only; the inset shows the 0.10&nbsp;m capture radius at true scale. Overview drones
-        are enlarged 4&times; and offset near capture for visibility.</figcaption>
-    </figure>
+    <h1 class="publication-title"><span class="tt">CoPAIR</span>: Teacher&#8209;Guided Multi&#8209;Agent Reinforcement Learning for Cooperative Quadrotor Pursuit</h1>
   </div>
 </header>
 
-<!-- ============================ ABSTRACT ============================ -->
-<section id="overview" class="section abstract">
-  <div class="wrap">
-    <p class="eyebrow">Abstract</p>
-    <h2 class="section-title">Separate learning to pursue from learning to adapt</h2>
-    <p>Learning cooperative aerial pursuit requires coordinated closed-loop behavior and adaptation to
-      changes in opponent behavior. We study this problem in a continuous-control setting with two
-      quadrotor pursuers and one evader. We introduce <b>CoPAIR</b> (Cooperative Pursuit through
-      Aggregated Imitation and Refinement), which separates learning coordinated pursuit behavior from
-      subsequent policy improvement and adaptation.</p>
-    <p>A proportional-navigation controller assigns complementary attacker and blocker roles to the two
-      pursuers and supervises a shared decentralized policy using Dataset Aggregation (DAgger).
-      Multi-Agent Proximal Policy Optimization (MAPPO) then improves this policy directly from task
-      reward. Subsequent reinforcement learning depends strongly on whether the teacher labels states
-      visited by its own policy or by the student policy. Behavior cloning from teacher-generated
-      trajectories produces poor closed-loop performance, whereas DAgger provides a strong
-      initialization that MAPPO improves to approximately <b>98% clean capture</b> against the scripted
-      evader, with higher capture rates and shorter capture times than a retuned version of the
-      teacher.</p>
-    <p>High performance against the scripted evader does not transfer directly to learned evaders
-      unseen during pursuer training and policy selection. Continued training against a population of
-      learned opponents substantially recovers this lost performance while largely retaining performance
-      against the original opponent. Supervision on learner-visited states can provide an effective
-      foundation for subsequent multi-agent reinforcement learning.</p>
-  </div>
-</section>
-
-<!-- ============================ STATS ============================ -->
-<section class="section stats">
-  <div class="wrap">
-    <div class="stat-grid">
-      <div class="stat"><div class="num">98.1%</div><div class="lbl">clean capture vs. APF evader<br/>(BC&nbsp;&rarr;&nbsp;MAPPO: 0.1%)</div></div>
-      <div class="stat"><div class="num">1.82&nbsp;s</div><div class="lbl">median capture time<br/>(retuned teacher: 2.82&nbsp;s)</div></div>
-      <div class="stat"><div class="num">97.6%</div><div class="lbl">capture on 1,786 starts<br/>the teacher never solves</div></div>
-      <div class="stat"><div class="num">12&nbsp;&rarr;&nbsp;70%</div><div class="lbl">capture vs. held-out learned<br/>evaders after continuation</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ METHOD ============================ -->
-<section id="method" class="section">
-  <div class="wrap">
-    <p class="eyebrow">Method</p>
-    <h2 class="section-title">One shared decentralized actor, three training stages</h2>
-    <p class="section-lead">Each pursuer runs the same parameter-shared actor on its own local
-      observation and a short evader history, and outputs body rates and collective thrust at 50&nbsp;Hz.
-      A centralized critic is used only during training. Competence is acquired first, then improved,
-      then made robust to new opponents.</p>
-
-    <figure class="figure-card">
-      <img src="assets/img/overview.png" alt="CoPAIR architecture: per-pursuer observations are embedded as tokens, mixed by entity self-attention and a GRU history encoder, and fed to a shared actor that outputs body rates and thrust to a 500 Hz rate controller. Bottom: Stage I DAgger, Stage II MAPPO, Stage III population training." />
-      <figcaption><b>CoPAIR execution and training.</b> Top: each pursuer's observation and evader
-        history feed the shared decentralized actor, which outputs body rates and thrust at 50&nbsp;Hz; a
-        fixed rate controller runs at 500&nbsp;Hz. Bottom: Stage&nbsp;I imitates the role-based teacher
-        with DAgger; Stage&nbsp;II refines the actor with MAPPO using rewards and centralized critic
-        values; Stage&nbsp;III alternates training against frozen opponent archives. Deployment uses one
-        shared actor.</figcaption>
-    </figure>
-
-    <div class="steps four">
-      <div class="step">
-        <div class="k">0</div>
-        <h3>Role-based teacher (BR-FRPN)</h3>
-        <p>FRPN proportional navigation augmented with complementary roles: the pursuer closer to the
-          evader <i>attacks</i>, the other <i>blocks</i> an interception point ahead of it. A
-          boundary-aware stopping envelope limits outward velocity. No communication or central state.</p>
-      </div>
-      <div class="step">
-        <div class="k">I</div>
-        <h3>Decentralized DAgger</h3>
-        <p>The student flies both pursuers from the first rollout; the teacher only labels the states the
-          student visits. 17 fitting rounds over a six-round replay window, MSE on actions,
-          52.2M environment steps.</p>
-      </div>
-      <div class="step">
-        <div class="k">II</div>
-        <h3>MAPPO refinement</h3>
-        <p>The DAgger actor is optimized directly on task reward with a centralized critic over an
-          82-D global state. The critic is warmed up first; no imitation loss is retained, so the policy
-          can depart from the teacher.</p>
-      </div>
-      <div class="step">
-        <div class="k">III</div>
-        <h3>Opponent populations</h3>
-        <p>PSRO-style alternation between evader and team archives. Opponents are sampled with
-          challenge weighting <i>q<sub>j</sub></i> &prop; (1&minus;<i>w<sub>j</sub></i>)<sup>2</sup>
-          plus a uniform floor, and the archive always keeps the scripted APF evader.</p>
-      </div>
-    </div>
-
-    <div class="callout">
-      <b>Why student-visited states matter:</b> behavior cloning predicts the teacher's actions
-      <i>more</i> accurately on teacher trajectories (normalized MSE 0.00546 vs. 0.00789), yet reaches
-      only 6.5% capture, and MAPPO drives it to 0.1%. DAgger labels the states the learner actually
-      reaches, giving a 62% starting point that MAPPO lifts to 98%.
-    </div>
-  </div>
-</section>
-
-<!-- ============================ SETUP ============================ -->
-<section id="setup" class="section">
-  <div class="wrap">
-    <p class="eyebrow">Problem Setup</p>
-    <h2 class="section-title">2-vs-1 nano-quadrotor pursuit in Isaac Lab</h2>
-    <p class="section-lead">All three agents are identical 34&nbsp;g nano-quadrotors driven through the
-      same body-rate and collective-thrust interface. The pursuers share a team reward and are modeled
-      as a Dec-POMDP for a fixed evader policy.</p>
-
-    <div class="media-row cols-2">
-      <div class="table-scroll">
-        <table class="results compact">
-          <thead><tr><th>Setting</th><th>Value</th></tr></thead>
-          <tbody>
-            <tr><td>Arena</td><td>4 &times; 5 &times; 2&nbsp;m</td></tr>
-            <tr><td>Capture radius</td><td>0.10&nbsp;m</td></tr>
-            <tr><td>Episode horizon</td><td>10&nbsp;s</td></tr>
-            <tr><td>Control interface</td><td>Body rates + collective thrust</td></tr>
-            <tr><td>Policy / physics rate</td><td>50&nbsp;Hz / 500&nbsp;Hz</td></tr>
-            <tr><td>Parallel arenas</td><td>6000</td></tr>
-            <tr><td>Stage I budget</td><td>52.2M environment steps</td></tr>
-            <tr><td>Stage II budget</td><td>50.1M environment steps</td></tr>
-            <tr><td>Stage III block</td><td>50.1M environment steps</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="steps one">
-        <div class="step">
-          <h3>Observations</h3>
-          <p>31-D per pursuer: rotation matrix, body-frame velocity, angular velocity, world position,
-            body-frame relative state of the evader and of the teammate, and remaining time, plus an
-            8&times;6 history of evader-relative positions and velocities.</p>
-        </div>
-        <div class="step">
-          <h3>Success = clean capture</h3>
-          <p>Some pursuer within 0.10&nbsp;m of the evader with no concurrent pursuer collision
-            (0.1385&nbsp;m) or boundary failure. Mass, inertia, motor lag, drag and controller gains are
-            randomized per vehicle at reset.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ RESULTS ============================ -->
-<section id="results" class="section">
-  <div class="wrap">
-    <p class="eyebrow">Results</p>
-    <h2 class="section-title">DAgger initialization + MAPPO surpasses the teacher</h2>
-    <p class="section-lead">Final evaluation against the scripted APF evader on 6000 randomized starts
-      &times; five executions. Learned rows report mean &plusmn; SD over three training runs; learned
-      paths use 102.3M interactions. Collision and boundary events concern pursuers.</p>
-
-    <div class="table-scroll">
-      <table class="results">
-        <thead>
-          <tr>
-            <th rowspan="2">Training path / controller</th>
-            <th rowspan="2">Capture after imitation (%)</th>
-            <th colspan="4">Final evaluation (%)</th>
-          </tr>
-          <tr>
-            <th>Capture &uarr;</th><th>Collision &darr;</th><th>Boundary exit &darr;</th><th>Timeout &darr;</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Tuned scratch MAPPO</td><td>&ndash;</td>
-            <td>3.71<span class="std"> &plusmn;0.25</span></td><td>0.54<span class="std"> &plusmn;0.18</span></td><td>0.97<span class="std"> &plusmn;0.12</span></td><td>94.79<span class="std"> &plusmn;0.44</span></td></tr>
-          <tr><td>Curriculum MAPPO</td><td>&ndash;</td>
-            <td>76.00<span class="std"> &plusmn;4.73</span></td><td>16.60<span class="std"> &plusmn;2.85</span></td><td>6.37<span class="std"> &plusmn;2.22</span></td><td>0.00<span class="std"> &plusmn;0.00</span></td></tr>
-          <tr class="group-start"><td>BC &rarr; MAPPO</td><td>6.51<span class="std"> &plusmn;1.37</span></td>
-            <td>0.11<span class="std"> &plusmn;0.10</span></td><td>4.93<span class="std"> &plusmn;1.37</span></td><td>0.90<span class="std"> &plusmn;0.20</span></td><td>94.05<span class="std"> &plusmn;1.48</span></td></tr>
-          <tr class="hl"><td>CoPAIR</td><td>62.16<span class="std"> &plusmn;0.77</span></td>
-            <td class="best">98.06<span class="std"> &plusmn;0.14</span></td><td>0.89<span class="std"> &plusmn;0.13</span></td><td>0.92<span class="std"> &plusmn;0.03</span></td><td>0.02<span class="std"> &plusmn;0.02</span></td></tr>
-          <tr><td>CoPAIR (retuned BR-FRPN)<sup>&dagger;</sup></td><td>78.11<span class="std"> &plusmn;1.38</span></td>
-            <td class="second">96.35<span class="std"> &plusmn;0.20</span></td><td>0.68<span class="std"> &plusmn;0.11</span></td><td>2.84<span class="std"> &plusmn;0.14</span></td><td>0.00<span class="std"> &plusmn;0.01</span></td></tr>
-          <tr><td>Role-free CoPAIR</td><td>69.80<span class="std"> &plusmn;1.33</span></td>
-            <td>93.40<span class="std"> &plusmn;1.27</span></td><td>5.66<span class="std"> &plusmn;1.17</span></td><td>0.31<span class="std"> &plusmn;0.04</span></td><td>0.00<span class="std"> &plusmn;0.00</span></td></tr>
-          <tr><td>Restricted-teammate CoPAIR</td><td>69.92<span class="std"> &plusmn;0.57</span></td>
-            <td>93.62<span class="std"> &plusmn;0.69</span></td><td>5.48<span class="std"> &plusmn;0.64</span></td><td>0.22<span class="std"> &plusmn;0.04</span></td><td>0.05<span class="std"> &plusmn;0.03</span></td></tr>
-          <tr class="group-start"><td>Original BR-FRPN</td><td>&ndash;</td>
-            <td>65.35</td><td>0.74</td><td>0.12</td><td>33.75</td></tr>
-          <tr><td>Retuned BR-FRPN</td><td>&ndash;</td>
-            <td>88.33</td><td>0.81</td><td>3.76</td><td>7.04</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="legend"><b>Bold</b> = best, <u>underline</u> = second best capture.
-      <sup>&dagger;</sup>Demonstrations from the retuned BR-FRPN; exploratory. Omitted mass is evader exits
-      and simultaneous events. Scripted controllers are point estimates on the same evaluation set.</p>
-
-    <figure class="figure-card" style="margin-top:30px;">
-      <img src="assets/img/init_learning.png" alt="Left: outcome breakdown at initialization for BC, early DAgger and full DAgger under mean actions and exploration. Right: capture during training for CoPAIR, BC to MAPPO, tuned scratch and curriculum." />
-      <figcaption><b>Initialization and learning on the APF task</b> (6000 starts, one execution, three
-        runs). (a) Outcome mix with mean actions vs. exploration noise (&sigma;<sub>0</sub>&nbsp;=&nbsp;0.10);
-        blue values give capture. BC enters MAPPO with mostly collisions and boundary exits.
-        (b) Capture mean &plusmn; SD; the dotted line marks the start of MAPPO refinement at 52.2M
-        interactions.</figcaption>
-    </figure>
-
-    <div class="media-row cols-2" style="margin-top:18px;">
-      <figure class="figure-card">
-        <img src="assets/img/capture_time.png" alt="Cumulative capture over time against APF for BR-FRPN, DAgger student, CoPAIR, curriculum and retuned BR-FRPN." />
-        <figcaption><b>Capture over time against APF</b> (6000 starts &times; five executions). Among
-          captured episodes the median capture time is 1.82&nbsp;s for CoPAIR, 2.82&nbsp;s for the
-          retuned teacher and 3.62&nbsp;s for the original teacher.</figcaption>
-      </figure>
-      <figure class="figure-card">
-        <img src="assets/img/unsolved.png" alt="Capture on the 1,786 starts the original teacher never solves: BR-FRPN 0, DAgger student 40.8, CoPAIR 97.6, curriculum 75.8, retuned BR-FRPN 80.6." />
-        <figcaption><b>Teacher-unsolved starts.</b> On the 1,786 starts (29.8%) that the original teacher
-          never captures across five executions, CoPAIR captures 97.6%. Diagnostic on the same starts,
-          not independent generalization evidence.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ OPPONENT SHIFT ============================ -->
-<section id="opponents" class="section stats">
-  <div class="wrap">
-    <p class="eyebrow">Opponent Shift &amp; Adaptation</p>
-    <h2 class="section-title">Near-perfect against APF is not robustness</h2>
-    <p class="section-lead">The Stage&nbsp;II team (P0) falls from 98.2% capture against APF to 12.2%
-      against held-out learned evaders (E1). Continued training from the same P0 parents, under the same
-      150.3M pursuer-interaction budget, compares which opponent distribution recovers it.</p>
-
-    <div class="media-row cols-2 align-start">
-      <div class="table-scroll">
-        <table class="results compact">
-          <thead>
-            <tr><th rowspan="2">Continuation</th><th colspan="4">Capture (%) &uarr;</th></tr>
-            <tr><th>APF</th><th>E1 held-out</th><th>E2<sup>*</sup></th><th>E3<sup>*</sup></th></tr>
-          </thead>
-          <tbody>
-            <tr><td>P0, no continuation</td><td>98.2<span class="std"> &plusmn;0.5</span></td><td>12.2<span class="std"> &plusmn;0.9</span></td><td>14.9<span class="std"> &plusmn;2.4</span></td><td>14.7<span class="std"> &plusmn;1.9</span></td></tr>
-            <tr><td>A: APF only</td><td class="best">98.6<span class="std"> &plusmn;0.4</span></td><td>22.3<span class="std"> &plusmn;6.8</span></td><td>29.2<span class="std"> &plusmn;3.0</span></td><td>23.6<span class="std"> &plusmn;0.9</span></td></tr>
-            <tr><td>B: one learned evader</td><td>94.9<span class="std"> &plusmn;1.3</span></td><td>60.7<span class="std"> &plusmn;8.3</span></td><td>78.4<span class="std"> &plusmn;2.8</span></td><td>69.2<span class="std"> &plusmn;3.3</span></td></tr>
-            <tr><td>C: fixed archive, uniform</td><td class="second">98.1<span class="std"> &plusmn;0.3</span></td><td class="second">68.2<span class="std"> &plusmn;12.0</span></td><td class="second">81.5<span class="std"> &plusmn;4.0</span></td><td>74.5<span class="std"> &plusmn;2.9</span></td></tr>
-            <tr class="hl"><td>D: fixed archive, challenge-weighted</td><td class="second">98.1<span class="std"> &plusmn;0.2</span></td><td class="best">69.7<span class="std"> &plusmn;5.3</span></td><td class="best">81.9<span class="std"> &plusmn;2.8</span></td><td class="second">75.3<span class="std"> &plusmn;2.8</span></td></tr>
-            <tr><td>P3: alternating<sup>*</sup></td><td>97.5<span class="std"> &plusmn;1.9</span></td><td>67.2<span class="std"> &plusmn;8.6</span></td><td>81.0<span class="std"> &plusmn;1.9</span></td><td class="best">76.0<span class="std"> &plusmn;1.4</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <figure class="figure-card" style="margin-top:0;">
-        <img src="assets/img/opponent_shift.png" alt="Capture of P0 against opponent groups versus achieved mean evader speed, colored by evader exit rate." />
-        <figcaption><b>Opponent shift for P0.</b> Faster scripted opponents (&asymp;2.4&nbsp;m/s) cut
-          capture to 58&ndash;59%; held-out learned evaders cut it to &asymp;12%. Color gives evader exits,
-          counted as non-captures.</figcaption>
-      </figure>
-    </div>
-    <p class="legend">6000 starts &times; two executions; mean &plusmn; SD over three runs. E1: three
-      checkpoints from one evader training run excluded from pursuer training, opponent sampling and
-      selection. <sup>*</sup>E2/E3 are training opponents of P3, unseen by A&ndash;D.</p>
-
-    <div class="callout">
-      <b>Takeaway:</b> a fixed archive of APF plus seven learned evaders recovers held-out capture from
-      12% to &asymp;70% while keeping &asymp;98% against APF. The evidence does not establish an
-      additional benefit from alternating generation or challenge weighting. Held-out collisions and
-      boundary exits (&asymp;16%) remain an open safety limitation.
-    </div>
-  </div>
-</section>
-
-<!-- ============================ VIDEOS ============================ -->
 <section id="videos" class="section">
   <div class="wrap">
-    <p class="eyebrow">Videos</p>
-    <h2 class="section-title">Rollouts in Isaac Lab</h2>
-    <p class="section-lead">Two pursuers (blue, yellow) and one evader (green) in the empty
-      4&times;5&times;2&nbsp;m arena. The wire sphere around the evader marks the 0.10&nbsp;m capture radius;
-      trails show recent motion. Clips play at real time.</p>
-
+    <h2 class="section-title">Videos</h2>
     <div class="vcarousel" aria-roledescription="carousel">
       <div class="vc-tabs" role="tablist">
       <button class="vc-tab active" type="button" role="tab" data-i="0">Teacher vs. Stage II</button>
@@ -407,30 +93,45 @@
   </div>
 </section>
 
-<!-- ============================ BIBTEX ============================ -->
-<section id="bibtex" class="section">
+<section id="abstract" class="section abstract">
   <div class="wrap">
-    <p class="eyebrow">Citation</p>
-    <h2 class="section-title">BibTeX</h2>
-    <p class="section-lead">Author and publication details will be added after the review period.</p>
-    <div class="bibtex-box">
-      <button class="copy-btn" type="button">Copy</button>
-<pre class="bibtex">@inproceedings{anonymous2027copair,
-  title     = {Teacher-Guided Multi-Agent Reinforcement Learning for
-               Cooperative Quadrotor Pursuit},
-  author    = {Anonymous},
-  booktitle = {Under review},
-  year      = {2027}
-}</pre>
-    </div>
+    <h2 class="section-title">Abstract</h2>
+    <p>Learning cooperative aerial pursuit requires coordinated closed-loop behavior and adaptation to
+      changes in opponent behavior. We study this problem in a continuous-control setting with two
+      quadrotor pursuers and one evader. We introduce <b>CoPAIR</b> (Cooperative Pursuit through
+      Aggregated Imitation and Refinement), which separates learning coordinated pursuit behavior from
+      subsequent policy improvement and adaptation.</p>
+    <p>A proportional-navigation controller assigns complementary attacker and blocker roles to the two
+      pursuers and supervises a shared decentralized policy using Dataset Aggregation (DAgger).
+      Multi-Agent Proximal Policy Optimization (MAPPO) then improves this policy directly from task
+      reward. Subsequent reinforcement learning depends strongly on whether the teacher labels states
+      visited by its own policy or by the student policy. Behavior cloning from teacher-generated
+      trajectories produces poor closed-loop performance, whereas DAgger provides a strong
+      initialization that MAPPO improves to approximately <b>98% clean capture</b> against the scripted
+      evader, with higher capture rates and shorter capture times than a retuned version of the
+      teacher.</p>
+    <p>High performance against the scripted evader does not transfer directly to learned evaders
+      unseen during pursuer training and policy selection. Continued training against a population of
+      learned opponents substantially recovers this lost performance while largely retaining performance
+      against the original opponent. Supervision on learner-visited states can provide an effective
+      foundation for subsequent multi-agent reinforcement learning.</p>
   </div>
 </section>
 
-<footer>
+<section id="framework" class="section">
   <div class="wrap">
-    <p><b>CoPAIR</b> &mdash; anonymous project page for double-blind review.</p>
+    <h2 class="section-title">Framework</h2>
+    <figure>
+      <img src="assets/img/overview.png" alt="CoPAIR architecture: per-pursuer observations are embedded as tokens, mixed by entity self-attention and a GRU history encoder, and fed to a shared actor that outputs body rates and thrust to a 500 Hz rate controller. Bottom: Stage I DAgger, Stage II MAPPO, Stage III population training." />
+      <figcaption><b>CoPAIR execution and training.</b> Top: each pursuer's observation and evader
+        history feed the shared decentralized actor, which outputs body rates and thrust at 50&nbsp;Hz; a
+        fixed rate controller runs at 500&nbsp;Hz. Bottom: Stage&nbsp;I imitates the role-based teacher
+        with DAgger; Stage&nbsp;II refines the actor with MAPPO using rewards and centralized critic
+        values; Stage&nbsp;III alternates training against frozen opponent archives. Deployment uses one
+        shared actor.</figcaption>
+    </figure>
   </div>
-</footer>
+</section>
 
 <script src="assets/js/main.js"></script>
 </body>
