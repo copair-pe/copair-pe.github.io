@@ -26,29 +26,52 @@
   </div>
 </header>
 
+<section id="overview-video" class="section" aria-label="CoPAIR video">
+  <div class="wrap">
+    <figure>
+      <video class="clip" data-lazy src="assets/video/copair_film.mp4" poster="assets/video/copair_film.jpg" width="1920" height="1080" style="height: auto" autoplay muted loop playsinline controls preload="metadata" aria-label="CoPAIR video">
+        <a href="assets/video/copair_film.mp4">Watch the CoPAIR video</a>.
+      </video>
+    </figure>
+  </div>
+</section>
+
+<section id="abstract" class="section abstract">
+  <div class="wrap">
+    <h2 class="section-title">Abstract</h2>
+    <p>Learning cooperative aerial pursuit requires coordinated closed-loop behavior and adaptation to
+      changes in opponent behavior. We study this problem in a continuous-control setting with two
+      quadrotor pursuers and one evader. We introduce <b>CoPAIR</b> (Cooperative Pursuit through
+      Aggregated Imitation and Refinement), which separates learning coordinated pursuit behavior from
+      subsequent policy improvement and adaptation.</p>
+    <p>A proportional-navigation controller assigns complementary attacker and blocker roles to the two
+      pursuers and supervises a shared decentralized policy using Dataset Aggregation (DAgger).
+      Multi-Agent Proximal Policy Optimization (MAPPO) then improves this policy directly from task
+      reward. Subsequent reinforcement learning depends strongly on whether the teacher labels states
+      visited by its own policy or by the student policy. Behavior cloning from teacher-generated
+      trajectories produces poor closed-loop performance, whereas DAgger provides a strong
+      initialization that MAPPO improves to approximately <b>98% clean capture</b> against the scripted
+      evader, with higher capture rates and shorter capture times than a retuned version of the
+      teacher.</p>
+    <p>High performance against the scripted evader does not transfer directly to learned evaders
+      unseen during pursuer training and policy selection. Continued training against a population of
+      learned opponents substantially recovers this lost performance while largely retaining performance
+      against the original opponent. Supervision on learner-visited states can provide an effective
+      foundation for subsequent multi-agent reinforcement learning.</p>
+  </div>
+</section>
+
 <section id="videos" class="section">
   <div class="wrap">
-    <h2 class="section-title">Videos</h2>
     <div class="vcarousel" aria-roledescription="carousel">
       <div class="vc-tabs" role="tablist">
-      <button class="vc-tab active" id="tab-film" type="button" role="tab" aria-controls="panel-film" data-i="0">Full film</button>
-      <button class="vc-tab" id="tab-teacher" type="button" role="tab" aria-controls="panel-teacher" data-i="1">Teacher vs. Stage II</button>
-      <button class="vc-tab" id="tab-p0" type="button" role="tab" aria-controls="panel-p0" data-i="2">P0 vs. APF evader</button>
-      <button class="vc-tab" id="tab-population" type="button" role="tab" aria-controls="panel-population" data-i="3">Generation 8 vs. learned evader</button>
-      <button class="vc-tab" id="tab-deployment" type="button" role="tab" aria-controls="panel-deployment" data-i="4">Simulation &amp; flight</button>
+      <button class="vc-tab active" id="tab-teacher" type="button" role="tab" aria-controls="panel-teacher" data-i="0">Teacher vs. Stage II</button>
+      <button class="vc-tab" id="tab-p0" type="button" role="tab" aria-controls="panel-p0" data-i="1">P0 vs. APF evader</button>
+      <button class="vc-tab" id="tab-population" type="button" role="tab" aria-controls="panel-population" data-i="2">Generation 8 vs. learned evader</button>
       </div>
       <div class="vc-stage">
         <button class="vc-arrow prev" type="button" aria-label="Previous video">&#8249;</button>
-      <div class="vc-slide active" id="panel-film" role="tabpanel" aria-labelledby="tab-film">
-        <h3 class="video-row-title">From simulation to real-world pursuit</h3>
-        <p class="video-row-text">The full CoPAIR film: learning coordinated pursuit, adapting the policy, and flying in the laboratory.</p>
-        <figure>
-          <video class="clip" src="assets/video/copair_film.mp4" poster="assets/video/copair_film.jpg" width="1920" height="1080" style="height: auto" autoplay muted loop playsinline controls preload="metadata" aria-label="Full CoPAIR film">
-            <a href="assets/video/copair_film.mp4">Watch the CoPAIR film</a>.
-          </video>
-        </figure>
-      </div>
-      <div class="vc-slide" id="panel-teacher" role="tabpanel" aria-labelledby="tab-teacher">
+      <div class="vc-slide active" id="panel-teacher" role="tabpanel" aria-labelledby="tab-teacher">
         <h3 class="video-row-title">Teacher and Stage&nbsp;II student against the scripted APF evader</h3>
         <p class="video-row-text">Left: the privileged BR-FRPN teacher. Right: the decentralized CoPAIR team after Stage&nbsp;II.</p>
         <div class="media-row cols-2">
@@ -98,52 +121,20 @@
           </figure>
         </div>
       </div>
-      <div class="vc-slide" id="panel-deployment" role="tabpanel" aria-labelledby="tab-deployment">
-        <h3 class="video-row-title">Simulation and deployment in 10 seconds</h3>
-        <p class="video-row-text">Logged policy rollouts and two real flights of the same game. Pursuer&nbsp;2 is virtual in the laboratory.</p>
-        <div class="vc-views">
-          <figure class="vc-main">
-            <video class="clip" data-src="assets/video/real_world.mp4" poster="assets/video/real_world.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="none" aria-label="Real-world pursuit from two camera views"></video>
-            <figcaption class="clip-cap">Real-world deployment: full speed, then half speed</figcaption>
-          </figure>
-          <figure>
-            <video class="clip" data-src="assets/video/simulation.mp4" poster="assets/video/simulation.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="none" aria-label="CoPAIR policy rollouts in parallel Isaac Lab arenas"></video>
-            <figcaption class="clip-cap">CoPAIR in Isaac Lab: parallel policy rollouts</figcaption>
-          </figure>
-          <figure>
-            <video class="clip" data-src="assets/video/deployment_sim.mp4" poster="assets/video/deployment_sim.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="none" aria-label="Deployment policy rollouts in the laboratory flight volume"></video>
-            <figcaption class="clip-cap">Deployment policy: simulation in the flight volume</figcaption>
-          </figure>
-        </div>
-      </div>
         <button class="vc-arrow next" type="button" aria-label="Next video">&#8250;</button>
       </div>
     </div>
   </div>
 </section>
 
-<section id="abstract" class="section abstract">
+<section id="deployment" class="section">
   <div class="wrap">
-    <h2 class="section-title">Abstract</h2>
-    <p>Learning cooperative aerial pursuit requires coordinated closed-loop behavior and adaptation to
-      changes in opponent behavior. We study this problem in a continuous-control setting with two
-      quadrotor pursuers and one evader. We introduce <b>CoPAIR</b> (Cooperative Pursuit through
-      Aggregated Imitation and Refinement), which separates learning coordinated pursuit behavior from
-      subsequent policy improvement and adaptation.</p>
-    <p>A proportional-navigation controller assigns complementary attacker and blocker roles to the two
-      pursuers and supervises a shared decentralized policy using Dataset Aggregation (DAgger).
-      Multi-Agent Proximal Policy Optimization (MAPPO) then improves this policy directly from task
-      reward. Subsequent reinforcement learning depends strongly on whether the teacher labels states
-      visited by its own policy or by the student policy. Behavior cloning from teacher-generated
-      trajectories produces poor closed-loop performance, whereas DAgger provides a strong
-      initialization that MAPPO improves to approximately <b>98% clean capture</b> against the scripted
-      evader, with higher capture rates and shorter capture times than a retuned version of the
-      teacher.</p>
-    <p>High performance against the scripted evader does not transfer directly to learned evaders
-      unseen during pursuer training and policy selection. Continued training against a population of
-      learned opponents substantially recovers this lost performance while largely retaining performance
-      against the original opponent. Supervision on learner-visited states can provide an effective
-      foundation for subsequent multi-agent reinforcement learning.</p>
+    <h2 class="section-title">Deployment</h2>
+    <p class="video-row-text">Two real flights of the same game. Pursuer&nbsp;2 is virtual in the laboratory.</p>
+    <figure>
+      <video class="clip" data-lazy src="assets/video/real_world.mp4" poster="assets/video/real_world.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="metadata" aria-label="Real-world pursuit from two camera views"></video>
+      <figcaption class="clip-cap">Full speed (camera A), then half speed (camera B)</figcaption>
+    </figure>
   </div>
 </section>
 

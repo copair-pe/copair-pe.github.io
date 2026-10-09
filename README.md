@@ -8,15 +8,11 @@ branch root, or preview locally with `python3 -m http.server`.
 
 ## Videos
 
-The first carousel tab plays the full submission film automatically, muted, with
-playback controls. The original comparisons remain in their existing tabs.
-The final tab contains three 10-second clips with short labels. Video files:
+The submission video plays automatically, muted, with playback controls above the
+abstract. The original selectable comparisons appear below the abstract. A
+separate deployment section shows the 10-second real-world clip. Video files:
 
 - `copair_film.mp4`: the complete submission film, encoded for web playback.
-- `simulation.mp4`: logged CoPAIR seed-11 rollouts from evaluation bank 925031;
-  the camera reveals the first 900 arenas.
-- `deployment_sim.mp4`: logged rollouts of the flown deployment policy in the
-  laboratory flight volume.
 - `real_world.mp4`: separate flights of the same game, filmed by cameras A and B.
   Camera A plays at full speed; camera B plays at half speed. The two physical
   drones are marked, and pursuer 2 is rendered from its logged virtual state.
