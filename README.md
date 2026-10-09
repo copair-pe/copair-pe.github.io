@@ -1,6 +1,6 @@
 # CoPAIR project page
 
-Static project page for the anonymous AAMAS 2027 submission "Teacher-Guided
+Project page for "Teacher-Guided
 Multi-Agent Reinforcement Learning for Cooperative Quadrotor Pursuit".
 
 Plain HTML/CSS/JS, no build step. Serve with GitHub Pages from the `main`
@@ -8,11 +8,11 @@ branch root, or preview locally with `python3 -m http.server`.
 
 ## Videos
 
-The submission video plays automatically, muted, with playback controls above the
+The overview video plays automatically, muted, with playback controls above the
 abstract. The original selectable comparisons appear below the abstract. A
 separate deployment section shows the 10-second real-world clip. Video files:
 
-- `copair_film.mp4`: the complete submission film, encoded for web playback.
+- `copair_film.mp4`: the complete CoPAIR film, encoded for web playback.
 - `real_world.mp4`: separate flights of the same game, filmed by cameras A and B.
   Camera A plays at full speed; camera B plays at half speed. The two physical
   drones are marked, and pursuer 2 is rendered from its logged virtual state.
