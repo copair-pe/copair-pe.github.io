@@ -47,6 +47,7 @@
       tabs.forEach(function (t, j) {
         t.classList.toggle("active", j === cur);
         t.setAttribute("aria-selected", j === cur ? "true" : "false");
+        t.tabIndex = j === cur ? 0 : -1;
       });
       vids(cur).forEach(function (v) { if (v.getAttribute("src")) v.currentTime = 0; });
       run();
@@ -55,9 +56,14 @@
     car.querySelector(".vc-arrow.prev").addEventListener("click", function () { show(cur - 1); });
     car.querySelector(".vc-arrow.next").addEventListener("click", function () { show(cur + 1); });
     car.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") show(cur - 1);
-      if (e.key === "ArrowRight") show(cur + 1);
+      if (e.target.tagName === "VIDEO") return;
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        e.preventDefault();
+        show(cur + (e.key === "ArrowLeft" ? -1 : 1));
+        tabs[cur].focus();
+      }
     });
+    show(0);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         onScreen = entries[0].isIntersecting; run();

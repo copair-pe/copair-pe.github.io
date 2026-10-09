@@ -31,13 +31,24 @@
     <h2 class="section-title">Videos</h2>
     <div class="vcarousel" aria-roledescription="carousel">
       <div class="vc-tabs" role="tablist">
-      <button class="vc-tab active" type="button" role="tab" data-i="0">Teacher vs. Stage II</button>
-      <button class="vc-tab" type="button" role="tab" data-i="1">P0 vs. APF evader</button>
-      <button class="vc-tab" type="button" role="tab" data-i="2">Generation 8 vs. learned evader</button>
+      <button class="vc-tab active" id="tab-film" type="button" role="tab" aria-controls="panel-film" data-i="0">Full film</button>
+      <button class="vc-tab" id="tab-teacher" type="button" role="tab" aria-controls="panel-teacher" data-i="1">Teacher vs. Stage II</button>
+      <button class="vc-tab" id="tab-p0" type="button" role="tab" aria-controls="panel-p0" data-i="2">P0 vs. APF evader</button>
+      <button class="vc-tab" id="tab-population" type="button" role="tab" aria-controls="panel-population" data-i="3">Generation 8 vs. learned evader</button>
+      <button class="vc-tab" id="tab-deployment" type="button" role="tab" aria-controls="panel-deployment" data-i="4">Simulation &amp; flight</button>
       </div>
       <div class="vc-stage">
         <button class="vc-arrow prev" type="button" aria-label="Previous video">&#8249;</button>
-      <div class="vc-slide active" role="tabpanel">
+      <div class="vc-slide active" id="panel-film" role="tabpanel" aria-labelledby="tab-film">
+        <h3 class="video-row-title">From simulation to real-world pursuit</h3>
+        <p class="video-row-text">The full CoPAIR film: learning coordinated pursuit, adapting the policy, and flying in the laboratory.</p>
+        <figure>
+          <video class="clip" src="assets/video/copair_film.mp4" poster="assets/video/copair_film.jpg" width="1920" height="1080" style="height: auto" autoplay muted loop playsinline controls preload="metadata" aria-label="Full CoPAIR film">
+            <a href="assets/video/copair_film.mp4">Watch the CoPAIR film</a>.
+          </video>
+        </figure>
+      </div>
+      <div class="vc-slide" id="panel-teacher" role="tabpanel" aria-labelledby="tab-teacher">
         <h3 class="video-row-title">Teacher and Stage&nbsp;II student against the scripted APF evader</h3>
         <p class="video-row-text">Left: the privileged BR-FRPN teacher. Right: the decentralized CoPAIR team after Stage&nbsp;II.</p>
         <div class="media-row cols-2">
@@ -51,7 +62,7 @@
           </figure>
         </div>
       </div>
-      <div class="vc-slide" role="tabpanel">
+      <div class="vc-slide" id="panel-p0" role="tabpanel" aria-labelledby="tab-p0">
         <h3 class="video-row-title">Stage&nbsp;II team (P0) against the APF evader</h3>
         <p class="video-row-text">The decentralized team trained through Stage&nbsp;II, same arena and evader as the main results. Episodes play back to back.</p>
         <div class="vc-views">
@@ -69,7 +80,7 @@
           </figure>
         </div>
       </div>
-      <div class="vc-slide" role="tabpanel">
+      <div class="vc-slide" id="panel-population" role="tabpanel" aria-labelledby="tab-population">
         <h3 class="video-row-title">After eight generations of population training, against a learned evader</h3>
         <p class="video-row-text">Pursuer and evader policies are trained in alternation. Here the pursuer team from generation&nbsp;8 faces the evader trained in the same generation.</p>
         <div class="vc-views">
@@ -84,6 +95,24 @@
           <figure class="">
             <video class="clip" data-src="assets/video/gen08_vs_evader_follow_E.mp4" muted loop playsinline preload="none"></video>
             <figcaption class="clip-cap">Follow camera, evader</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="vc-slide" id="panel-deployment" role="tabpanel" aria-labelledby="tab-deployment">
+        <h3 class="video-row-title">Simulation and deployment in 10 seconds</h3>
+        <p class="video-row-text">Logged policy rollouts and two real flights of the same game. Pursuer&nbsp;2 is virtual in the laboratory.</p>
+        <div class="vc-views">
+          <figure class="vc-main">
+            <video class="clip" data-src="assets/video/real_world.mp4" poster="assets/video/real_world.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="none" aria-label="Real-world pursuit from two camera views"></video>
+            <figcaption class="clip-cap">Real-world deployment: full speed, then half speed</figcaption>
+          </figure>
+          <figure>
+            <video class="clip" data-src="assets/video/simulation.mp4" poster="assets/video/simulation.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="none" aria-label="CoPAIR policy rollouts in parallel Isaac Lab arenas"></video>
+            <figcaption class="clip-cap">CoPAIR in Isaac Lab: parallel policy rollouts</figcaption>
+          </figure>
+          <figure>
+            <video class="clip" data-src="assets/video/deployment_sim.mp4" poster="assets/video/deployment_sim.jpg" width="1920" height="1080" style="height: auto" muted loop playsinline controls preload="none" aria-label="Deployment policy rollouts in the laboratory flight volume"></video>
+            <figcaption class="clip-cap">Deployment policy: simulation in the flight volume</figcaption>
           </figure>
         </div>
       </div>
